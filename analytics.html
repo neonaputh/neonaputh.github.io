@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Illustrative sample-data analytics for the Northline Financial advisor website.">
+  <title>Analytics | Northline Financial</title>
+  <link rel="stylesheet" href="assets/css/pages.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="announcement">Independent advice. A more intentional future. <a href="index.html#approach">Meet your advisor →</a></div>
+  <header class="wrap nav">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">△</span><span class="brand-name">Northline<span>Financial planning</span></span></a>
+    <nav class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="aboutus.html">About Us</a><a href="managefinance.html">Budget Planner</a><a href="analytics.html" aria-current="page">Analytics</a></nav>
+    <a class="nav-cta" href="managefinance.html">Update goals →</a>
+  </header>
+  <main>
+    <section class="page-hero"><div class="wrap"><p class="eyebrow">Sample-data analytics</p><h1>A clearer view of financial progress.</h1><p>Illustrative charts show a sample savings trend and a hypothetical monthly budget allocation. The values are fictional and demonstrate the site's analytics interface.</p></div></section>
+    <section class="page-section"><div class="wrap charts-grid">
+      <article class="chart-card"><h2>Sample monthly savings</h2><div class="chart-wrap"><canvas id="savingsChart" role="img" aria-label="Line chart of fictional monthly savings"></canvas></div></article>
+      <article class="chart-card"><h2>Example budget allocation</h2><div class="chart-wrap"><canvas id="allocationChart" role="img" aria-label="Doughnut chart of fictional budget allocation"></canvas></div></article>
+    </div><p class="wrap data-note">These charts are for coursework demonstration only. They do not represent real client data or financial performance.</p></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="index.html"><span class="brand-name">Northline<span>Financial planning</span></span></a><p class="footer-line">Thoughtful planning for what comes next.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="aboutus.html">About Us</a><a href="managefinance.html">Budget Planner</a><a href="analytics.html">Analytics</a></nav></div><div class="footer-bottom"><span>© <span class="year"></span> Northline Financial</span><span>Fictional coursework data. Not financial advice.</span></div></div></footer>
+  <script>
+    document.querySelector(".year").textContent = new Date().getFullYear();
+    const colors = { green: "#1f493a", lime: "#d5e568", rust: "#b7664d" };
+    new Chart(document.querySelector("#savingsChart"), {
+      type: "line",
+      data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], datasets: [{ label: "Savings ($)", data: [420, 560, 610, 760, 890, 990, 1120], borderColor: colors.green, backgroundColor: "rgba(31,73,58,.12)", fill: true, tension: .35 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: value => "$" + value } } } }
+    });
+    new Chart(document.querySelector("#allocationChart"), {
+      type: "doughnut",
+      data: { labels: ["Housing", "Savings", "Investments", "Lifestyle"], datasets: [{ data: [32, 24, 26, 18], backgroundColor: ["#14372d", colors.green, colors.lime, colors.rust], borderWidth: 0 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
+    });
+  </script>
+</body>
+</html>

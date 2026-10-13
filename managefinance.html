@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mock financial goal manager for the Northline Financial advisor website.">
+  <title>Budget Planner | Northline Financial</title>
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+  <div class="announcement">Independent advice. A more intentional future. <a href="index.html#approach">Meet your advisor →</a></div>
+  <header class="wrap nav">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">△</span><span class="brand-name">Northline<span>Financial planning</span></span></a>
+    <nav class="nav-links" aria-label="Main navigation"><a href="index.html">Home</a><a href="aboutus.html">About Us</a><a href="managefinance.html" aria-current="page">Budget Planner</a><a href="analytics.html">Analytics</a></nav>
+    <a class="nav-cta" href="analytics.html">View analytics →</a>
+  </header>
+  <main>
+    <section class="page-hero"><div class="wrap"><p class="eyebrow">Client planning tool</p><h1>Keep your financial goals in view.</h1><p>Add, review, update, and remove sample planning goals. This frontend-only demo stores entries in your browser using local storage.</p></div></section>
+    <section class="page-section"><div class="wrap dashboard-grid">
+      <section class="panel">
+        <h2>Manage financial goals</h2>
+        <form id="budgetForm">
+          <div class="form-grid">
+            <div class="field"><label for="goalName">Goal name</label><input id="goalName" name="name" required maxlength="80" placeholder="Emergency fund"></div>
+            <div class="field"><label for="goalCategory">Category</label><select id="goalCategory" name="category"><option>Savings</option><option>Investment</option><option>Retirement</option><option>Education</option><option>Home</option></select></div>
+            <div class="field"><label for="goalAmount">Planned amount ($)</label><input id="goalAmount" name="amount" type="number" min="1" step="1" required placeholder="2500"></div>
+            <div class="field"><label for="goalStatus">Status</label><select id="goalStatus" name="status"><option>On track</option><option>Review</option><option>Scheduled</option></select></div>
+          </div>
+          <div class="form-actions"><button id="saveGoal" type="submit">Add goal</button><button class="secondary" id="resetGoal" type="button">Clear form</button></div>
+        </form>
+        <div class="table-wrap"><table class="data-table"><thead><tr><th>Goal</th><th>Category</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="budgetRows"></tbody></table></div>
+      </section>
+      <aside class="summary-stack" aria-label="Budget summary">
+        <div class="summary-item"><strong id="totalAmount">$0</strong><span>Total planned amount</span></div>
+        <div class="summary-item"><strong id="goalCount">0</strong><span>Sample active goals</span></div>
+        <div class="summary-item"><strong>Mock data</strong><span>Stored in this browser only</span></div>
+      </aside>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="index.html"><span class="brand-name">Northline<span>Financial planning</span></span></a><p class="footer-line">Thoughtful planning for what comes next.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="aboutus.html">About Us</a><a href="managefinance.html">Budget Planner</a><a href="analytics.html">Analytics</a></nav></div><div class="footer-bottom"><span>© <span class="year"></span> Northline Financial</span><span>Fictional coursework data. Not financial advice.</span></div></div></footer>
+  <script src="assets/js/budget.js"></script><script>document.querySelector(".year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
