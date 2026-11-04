@@ -224,7 +224,7 @@
     }
     .content-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1fr;
       gap: 20px;
       align-items: start;
     }
@@ -318,9 +318,9 @@
     <nav class="nav-links" aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#features">Features</a>
-      <a href="#bot">AI Bot</a>
+      <a href="#" onclick="window.botpress.open(); return false;">AI Bot</a>
     </nav>
-    <a href="#bot" class="button">Talk to the bot</a>
+    <a href="#" onclick="window.botpress.open(); return false;" class="button">Talk to the bot</a>
   </header>
 
   <section class="hero" id="top">
@@ -330,7 +330,7 @@
         <h1>Meet Northline Money Mentor.</h1>
         <p class="lead">Northline Money Mentor is a conversational AI assistant designed to help people understand budgeting, saving goals, debt management, and emergency planning in a simple, approachable way.</p>
         <div class="hero-actions">
-          <a href="#bot" class="button">Start chat</a>
+          <a href="#" onclick="window.botpress.open(); return false;" class="button">Start chat</a>
           <a href="#features" class="button secondary">Explore features</a>
         </div>
         <p class="mini-note">Built for coursework demonstration: realistic financial guidance with a friendly, supportive tone.</p>
@@ -388,17 +388,6 @@
             <li>Examples of realistic financial habits that support long-term stability.</li>
           </ul>
         </div>
-        <div class="bot-box" id="bot">
-          <div class="bot-box-header">
-            <h3>Northline Money Mentor</h3>
-            <span class="status-dot" aria-label="Bot online"></span>
-          </div>
-          <div class="chat-shell" aria-live="polite" style="padding:0; height:520px; overflow:hidden;">
-            <div id="webchat" style="width:100%; height:100%;">
-              <span id="chat-loading">Loading chat…</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   </main>
@@ -415,15 +404,9 @@
 
   <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
   <script>
-    window.botpress.on("webchat:ready", function () {
-      var loading = document.getElementById("chat-loading");
-      if (loading) loading.remove();
-      window.botpress.open();
-    });
     window.botpress.init({
       botId: "141d1d99-485c-4092-8124-1309ac3b9bc8",
       clientId: "b2f9ed81-f1b3-42e5-9e60-46a36e9a3665",
-      selector: "#webchat",
       configuration: {
         version: "v2",
         botName: "Northline Money Mentor",
@@ -437,9 +420,7 @@
         welcomeHeading: "Make your next money decision with confidence",
         welcomeSubtitle: "Ask about budgeting, emergency savings, debt, or balancing your financial goals.",
         conversationStartersEnabled: false,
-        citationsEnabled: true,
-        hideWidget: true,
-        showCloseButton: false
+        citationsEnabled: true
       }
     });
   </script>
