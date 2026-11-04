@@ -393,8 +393,10 @@
             <h3>Northline Money Mentor</h3>
             <span class="status-dot" aria-label="Bot online"></span>
           </div>
-          <div class="chat-shell" id="botpress-container" aria-live="polite">
-            <div id="bp-webchat" style="width:100%; height:100%; min-height:280px;"></div>
+          <div class="chat-shell" aria-live="polite">
+            <div style="width:100%; min-height:280px; display:grid; place-items:center; color: var(--muted);">
+              Live BotPress chat will appear here when the widget loads.
+            </div>
           </div>
         </div>
       </div>
@@ -411,23 +413,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-  <script>
-    window.botpressWebChat.init({
-      botId: "2c56f350-6e19-406a-b018-a4781deb5ff3",
-      hostUrl: "https://cdn.botpress.cloud/webchat/v5.0",
-      messagingUrl: "https://messaging.botpress.cloud",
-      clientId: "2c56f350-6e19-406a-b018-a4781deb5ff3",
-      composerPlaceholder: "Ask Northline Money Mentor",
-      showConversationsButton: true,
-      enableConversationDeletion: false,
-      showPoweredBy: false,
-      hideWidget: false,
-      disableAnimations: false,
-      containerWidth: "100%",
-      containerHeight: "100%",
-      stylesheet: "https://files.bpcontent.cloud/2026/11/04/22/20261104223217-40VD699A.js"
-    });
-  </script>
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/11/04/22/20261104223217-40VD699A.js" defer></script>
 </body>
 </html>
