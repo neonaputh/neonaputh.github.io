@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Northline Money Mentor is a financial planning chatbot that helps users explore budgeting, emergency funds, savings goals, and debt planning.">
+  <title>Northline Money Mentor | AI Budget Assistant</title>
+  <style>
+    :root {
+      --paper: #f6f3ed;
+      --white: #fffefb;
+      --ink: #183127;
+      --muted: #5a6b64;
+      --green: #1f493a;
+      --green-deep: #14372d;
+      --lime: #d8e86d;
+      --sand: #e9ece3;
+      --rust: #b75f45;
+      --line: #dfe3d8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .topbar {
+      background: var(--green-deep);
+      color: #edf1ea;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(4px);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .nav-links a:hover { color: var(--rust); }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      min-height: 42px;
+      background: var(--green);
+      color: white;
+      border: 1px solid var(--green);
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .button.secondary {
+      background: transparent;
+      color: var(--green);
+    }
+    .hero {
+      position: relative;
+      background: linear-gradient(90deg, rgba(20,55,45,.93), rgba(20,55,45,.72)), url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+      color: white;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 34px;
+      padding: 78px 0 92px;
+    }
+    .eyebrow {
+      color: var(--lime);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.75rem, 6vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+    .lead {
+      max-width: 620px;
+      color: rgba(255,255,255,.8);
+      font-size: 1.06rem;
+      margin-bottom: 28px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .mini-note {
+      color: rgba(255,255,255,.76);
+      font-size: 0.8rem;
+    }
+    .hero-panel {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      padding: 24px;
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+    }
+    .hero-panel h2 {
+      margin: 0 0 18px;
+      font-size: 1.2rem;
+      color: var(--lime);
+    }
+    .sample-ask {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: white;
+      font-size: 0.95rem;
+    }
+    .sample-ask li {
+      padding: 10px 12px;
+      border-left: 3px solid var(--lime);
+      background: rgba(255,255,255,.04);
+    }
+    main { padding: 58px 0 20px; }
+    .section { padding: 16px 0 52px; }
+    .section-header {
+      margin-bottom: 26px;
+    }
+    .section-header h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+    }
+    .section-header p {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 10px 28px rgba(27,50,40,.04);
+    }
+    .card .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      background: #edf4ea;
+      color: var(--green);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .list-panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 24px;
+    }
+    .list-panel ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .list-panel li + li { margin-top: 8px; }
+    .bot-box {
+      background: linear-gradient(180deg, #edf2e8, #ffffff);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 400px;
+    }
+    .bot-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .bot-box-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #26b25d;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(38,178,93,.15);
+    }
+    .chat-shell {
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer {
+      background: var(--green-deep);
+      color: rgba(255,255,255,.8);
+      padding: 28px 0 36px;
+      margin-top: 22px;
+    }
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 780px) {
+      .nav { flex-wrap: wrap; padding: 12px 0; }
+      .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
+      .hero-inner, .feature-grid, .content-grid { grid-template-columns: 1fr; }
+      .hero-inner { padding-top: 52px; padding-bottom: 62px; }
+      .button { width: 100%; }
+      .hero-actions { flex-direction: column; }
+      .section { padding-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Northline Financial AI Demo</div>
+  <header class="wrap nav">
+    <a href="#top" class="brand" aria-label="Northline Money Mentor home">
+      <span class="brand-mark">N</span>
+      <span>
+        Northline
+        <small>Money Mentor</small>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#bot">AI Bot</a>
+    </nav>
+    <a href="#bot" class="button">Talk to the bot</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow">Smart financial guidance</div>
+        <h1>Meet Northline Money Mentor.</h1>
+        <p class="lead">Northline Money Mentor is a conversational AI assistant designed to help people understand budgeting, saving goals, debt management, and emergency planning in a simple, approachable way.</p>
+        <div class="hero-actions">
+          <a href="#bot" class="button">Start chat</a>
+          <a href="#features" class="button secondary">Explore features</a>
+        </div>
+        <p class="mini-note">Built for coursework demonstration: realistic financial guidance with a friendly, supportive tone.</p>
+      </div>
+      <aside class="hero-panel" aria-label="Bot samples">
+        <h2>Try asking:</h2>
+        <ul class="sample-ask">
+          <li>"How much should I save for an emergency fund?"</li>
+          <li>"How can I make a realistic monthly budget?"</li>
+          <li>"What should I do if my debt payments feel too high?"</li>
+          <li>"How can I prioritize savings versus investing?"</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <section class="section wrap" id="about">
+      <div class="section-header">
+        <h2>What this bot helps with</h2>
+        <p>The bot is designed around common personal finance questions, helping users think through financial goals without the stress of complicated jargon or intimidating financial language.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="card">
+          <div class="icon">$</div>
+          <h3>Budgeting basics</h3>
+          <p>Explains how to organize income, expenses, and savings so a monthly plan is realistic and sustainable.</p>
+        </article>
+        <article class="card">
+          <div class="icon">◎</div>
+          <h3>Goal planning</h3>
+          <p>Helps users prioritize emergency funds, short-term goals, debt reduction, and bigger future milestones.</p>
+        </article>
+        <article class="card">
+          <div class="icon">✓</div>
+          <h3>Money confidence</h3>
+          <p>Offers clear guidance, encouragement, and simple next steps for users beginning to manage their finances.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="features">
+      <div class="section-header">
+        <h2>Bot context and knowledge base</h2>
+        <p>This AI assistant is intended to answer user questions based on realistic personal finance guidance, including planning rules, common budget recommendations, and debt-reduction habits.</p>
+      </div>
+      <div class="content-grid">
+        <div class="list-panel">
+          <h3>Coverage includes:</h3>
+          <ul>
+            <li>Emergency fund benchmarks and practical savings targets.</li>
+            <li>Monthly budget structure for essentials, goals, and lifestyle spending.</li>
+            <li>How to handle debt when income is tight or expenses are rising.</li>
+            <li>Simple trade-offs between saving, investing, and paying down debt.</li>
+            <li>Examples of realistic financial habits that support long-term stability.</li>
+          </ul>
+        </div>
+        <div class="bot-box" id="bot">
+          <div class="bot-box-header">
+            <h3>Northline Money Mentor</h3>
+            <span class="status-dot" aria-label="Bot online"></span>
+          </div>
+          <div class="chat-shell">
+            <div>
+              <strong>BotPress chat widget goes here.</strong><br>
+              Replace the placeholder BotPress configuration with your published bot’s ID and host settings for live chat.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-wrap">
+      <div>
+        <strong>Northline Money Mentor</strong><br>
+        Financial guidance designed to feel simple, supportive, and practical.
+      </div>
+      <div>Coursework demo • Fictional financial guidance • Not financial advice</div>
+    </div>
+  </footer>
+
+  <script>
+    // BotPress embed placeholder. Replace BOT_ID and related values with the published BotPress bot configuration.
+    // Example:
+    // <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    // <script src="https://mediafiles.botpress.cloud/YOUR_BOT_ID/webchat/config.js" defer></script>
+    // Or use window.botpressWebChat.init({ botId: "YOUR_BOT_ID", hostUrl: "https://cdn.botpress.cloud/webchat/v1", ... });
+  </script>
+</body>
+</html>

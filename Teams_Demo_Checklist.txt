@@ -1,0 +1,7 @@
+Teams demo checklist
+
+- Open the deployed mybot.html page in the browser.
+- Ask 2-3 finance-related questions relevant to the bot context.
+- Show the bot responding clearly and professionally.
+- Keep the video under 2 minutes.
+- Paste the recording link into Assignment2_Submission.docx.

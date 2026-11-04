@@ -1,0 +1,7 @@
+Northline Money Mentor
+
+1. Create a BotPress account and publish the finance assistant bot.
+2. Use the BotPress webchat snippet in mybot.html. Replace the placeholder bot settings with your published bot ID and host information.
+3. GitHub Pages deployment: upload the page to the GitHub Pages repository and confirm the live URL loads.
+4. Test sample prompts such as: How much should I save for an emergency fund? How do I create a realistic budget? What should I do about debt?
+5. Record a short Microsoft Teams demo, then paste the link into the Word submission document.
