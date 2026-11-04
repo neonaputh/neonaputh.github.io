@@ -393,9 +393,9 @@
             <h3>Northline Money Mentor</h3>
             <span class="status-dot" aria-label="Bot online"></span>
           </div>
-          <div class="chat-shell" aria-live="polite">
-            <div style="width:100%; min-height:280px; display:grid; place-items:center; color: var(--muted);">
-              Live BotPress chat will appear here when the widget loads.
+          <div class="chat-shell" aria-live="polite" style="padding:0; height:520px; overflow:hidden;">
+            <div id="webchat" style="width:100%; height:100%;">
+              <span id="chat-loading">Loading chat…</span>
             </div>
           </div>
         </div>
@@ -413,30 +413,33 @@
     </div>
   </footer>
 
-  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
   <script>
-    window.botpressWebChat.init({
+    window.botpress.on("webchat:ready", function () {
+      var loading = document.getElementById("chat-loading");
+      if (loading) loading.remove();
+      window.botpress.open();
+    });
+    window.botpress.init({
       botId: "141d1d99-485c-4092-8124-1309ac3b9bc8",
-      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
-      messagingUrl: "https://messaging.botpress.cloud",
       clientId: "b2f9ed81-f1b3-42e5-9e60-46a36e9a3665",
+      selector: "#webchat",
       configuration: {
         version: "v2",
         botName: "Northline Money Mentor",
         botDescription: "Get approachable guidance on budgeting, savings goals, debt management, and emergency planning.",
-        welcomeHeading: "Make your next money decision with confidence",
-        welcomeSubtitle: "Ask about budgeting, emergency savings, debt, or balancing your financial goals.",
+        website: { title: "Website", link: "https://neonaputh.github.io/" },
         feedbackEnabled: true,
         allowFileUpload: true,
         soundEnabled: true,
         conversationHistory: true,
         homePageEnabled: true,
+        welcomeHeading: "Make your next money decision with confidence",
+        welcomeSubtitle: "Ask about budgeting, emergency savings, debt, or balancing your financial goals.",
         conversationStartersEnabled: false,
         citationsEnabled: true,
-        website: {
-          title: "Website",
-          link: "https://neonaputh.github.io/"
-        }
+        hideWidget: true,
+        showCloseButton: false
       }
     });
   </script>
